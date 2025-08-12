@@ -2,11 +2,15 @@
 
 namespace App\Modules\Catalog\Domain\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany};
+use Spatie\Multitenancy\Models\Concerns\UsesLandlordConnection;
 
 class Category extends Model
 {
+    use HasUuids, UsesLandlordConnection;
+
     protected $guarded = [];
 
     protected static function booted(): void

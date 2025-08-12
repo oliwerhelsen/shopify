@@ -4,9 +4,12 @@ namespace App\Modules\Catalog\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class ProductOptionValue extends Model
 {
+    use HasUuids, UsesTenantConnection;
+
     protected $guarded = [];
 
     public function option(): BelongsTo

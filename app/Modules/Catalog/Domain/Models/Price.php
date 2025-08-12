@@ -2,12 +2,16 @@
 
 namespace App\Modules\Catalog\Domain\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Casts\MoneyCast;
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class Price extends Model
 {
+    use HasUuids, UsesTenantConnection;
+
     protected $guarded = [];
 
     // Logiskt attribut "money" mappar mot amount/currency via MoneyCast

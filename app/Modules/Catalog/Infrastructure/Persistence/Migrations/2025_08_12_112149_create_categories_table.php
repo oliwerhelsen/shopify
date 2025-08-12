@@ -11,13 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('categories', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->foreignUuid('parent_id')->nullable()->constrained('categories')->cascadeOnDelete();
+            $table->uuid('parent_id')->nullable();
             $table->unsignedInteger('position')->default(0);
             $table->timestamps();
+        });
+
+        // Lägg till foreign key constraint på parent_id EFTER att tabellen är skapad
+        Schema::table('categories', function (Blueprint $table) {
+            $table->foreign('parent_id')->references('id')->on('categories')->cascadeOnDelete();
         });
 
         // Pivot: products <-> categories

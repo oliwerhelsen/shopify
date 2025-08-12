@@ -3,15 +3,17 @@
 namespace App\Modules\Catalog\Domain\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\{BelongsToMany, HasMany};
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Laravel\Scout\Searchable;
+use Spatie\Multitenancy\Models\Concerns\UsesTenantConnection;
 
 class Product extends Model implements HasMedia
 {
-    use InteractsWithMedia, Searchable, Sluggable;
+    use InteractsWithMedia, Searchable, Sluggable, HasUuids, UsesTenantConnection;
 
     protected $guarded = [];
 

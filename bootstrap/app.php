@@ -12,10 +12,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware
-            ->web(append: [
-                \Spatie\Multitenancy\Http\Middleware\NeedsTenant::class,
-                \Spatie\Multitenancy\Http\Middleware\EnsureValidTenantSession::class,
-            ])
             ->group('tenant', [
                 \Spatie\Multitenancy\Http\Middleware\NeedsTenant::class,
                 \Spatie\Multitenancy\Http\Middleware\EnsureValidTenantSession::class,
